@@ -3,10 +3,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class MyHashTable <K,V> {
-    private ArrayList<HashNode<K,V>> bucketArray; // array with chain of nodes; K - key, V - value;
-    private int numBuckets; // capacity of array
+    private ArrayList<HashNode<K,V>> bucketArray; // array -K,V;
+    private int numBuckets; // like size of array
 
-    private int size; // actual number or size of elements
+    private int size; // actual number or size of items
 
     public MyHashTable(){
         bucketArray = new ArrayList<>();
@@ -47,7 +47,7 @@ public class MyHashTable <K,V> {
 
         HashNode<K,V> head = bucketArray.get(bucketIndex);
 
-        HashNode<K,V> prev = null; // extra node for connecting prev node with current node
+        HashNode<K,V> prev = null; 
         while (head != null){
             if (head.key.equals(key) && hashCode == head.hashCode){
                 break;
@@ -68,3 +68,19 @@ public class MyHashTable <K,V> {
         return head.value;
     }
 	
+
+ public V get(K key){
+        int bucketIndex = getBucketIndex(key);
+        int hashCode = hashCode(key);
+
+        HashNode<K,V> head = bucketArray.get(bucketIndex); // beginning with the head and progressing to the first piece within the bucket
+
+        while (head != null){
+            if (head.key.equals(key) && head.hashCode == hashCode) // Because keys and other elements may be the same, check the key with the hashcode.
+            {return head.value;}
+
+            head = head.next;
+        }
+
+        return null;
+    }
