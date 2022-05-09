@@ -2,4 +2,10 @@ package com.company;
 
 public class Node {
     int key;
-    Node left, right;
+  Node left, right;
+
+    public Node(int item){
+        key = item;
+  
+    }
+}
