@@ -12,3 +12,4 @@ public class MyBSTreeTest {
         root = bst.insert(root, 60);
         root = bst.insert(root, 70);
         System.out.printf("\nFirst Tree\n");
+ bst.inorder(root);
