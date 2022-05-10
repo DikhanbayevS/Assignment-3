@@ -52,3 +52,42 @@ public class MyBSTree {
     }
 
     // deleteNode() - deleting node
+Node deleteNode(Node root, int k){
+        if (root == null){
+            return root;
+        }
+
+        if (k < root.key){
+            root.left = deleteNode(root.left, k);
+        }
+
+        else if (k > root.key){
+            root.right = deleteNode(root.right, k);
+        }
+
+        else {
+            if (root.left == null){
+                return root.right;
+            }
+
+            else if (root.right == null){
+                return root.left;
+            }
+
+            root.key = minVal(root.right);
+
+            root.right = deleteNode(root.right, root.key);
+        }
+        return root;
+    }
+
+    
+    int minVal(Node root){
+        int minv = root.key;// return min value=  minVal()
+        while (root.left != null){
+            minv = root.left.key;
+            root = root.left;
+        }
+        return minv;
+    }
+}
