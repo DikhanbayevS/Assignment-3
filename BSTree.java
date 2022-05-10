@@ -27,3 +27,28 @@ public class MyBSTree {
         }
 
         return root;
+        }
+
+    
+    void inorder(Node root){
+        if (root != null){
+            inorder(root.left);
+            System.out.println(root.key);
+            inorder(root.right);
+        }
+    }
+	
+	
+    public Node search(Node root, int key){// search() - searching items
+        if (root == null || root.key == key){
+            return root;
+        }
+
+        if (root.key < key){
+            return search(root.right, key);
+        }
+
+        return search(root.left, key);
+    }
+
+    // deleteNode() - deleting node
